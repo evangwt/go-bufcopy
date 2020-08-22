@@ -29,8 +29,13 @@ func BenchmarkIoCopySmall(b *testing.B) {
 
 	for i := 0; i < b.N; i++ {
 		io.Copy(&dst, src)
+
+		b.StopTimer()
 		src.Reset(str)
+		b.StartTimer()
 	}
+
+	b.StopTimer()
 	b.ReportAllocs()
 }
 
@@ -44,8 +49,13 @@ func BenchmarkBufCopySmall(b *testing.B) {
 
 	for i := 0; i < b.N; i++ {
 		buf.Copy(&dst, src)
+
+		b.StopTimer()
 		src.Reset(str)
+		b.StartTimer()
 	}
+
+	b.StopTimer()
 	b.ReportAllocs()
 }
 
@@ -58,8 +68,13 @@ func BenchmarkIoCopyLarge(b *testing.B) {
 
 	for i := 0; i < b.N; i++ {
 		io.Copy(&dst, src)
+
+		b.StopTimer()
 		src.Reset(str)
+		b.StartTimer()
 	}
+
+	b.StopTimer()
 	b.ReportAllocs()
 }
 
@@ -73,7 +88,12 @@ func BenchmarkBufCopyLarge(b *testing.B) {
 
 	for i := 0; i < b.N; i++ {
 		buf.Copy(&dst, src)
+
+		b.StopTimer()
 		src.Reset(str)
+		b.StartTimer()
 	}
+
+	b.StopTimer()
 	b.ReportAllocs()
 }
